@@ -17,12 +17,13 @@
  *  Google 等国外公司在其道路地图中使用的也是高德的数据。BD-09 坐标系则是百度地图专用的坐标系。
  *
  ******************************************************************************************************************************
- *  
+ *
  * 本例子提供 标准坐标系和中国坐标系的相互转换,查看更多(https://github.com/reesun1130/WGS84TOGCJ02)
  *
  */
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 typedef struct
 {
@@ -33,6 +34,8 @@ typedef struct
 Location LocationMake(double lat, double lng);
 
 @interface WGS84TOGCJ02 : NSObject
+
++(CLLocationCoordinate2D)transformFromWGSToGCJ:(CLLocationCoordinate2D)wgsLoc;
 
 /**
  *  判断是否已经超出中国范围

@@ -118,4 +118,20 @@ Location bd_decrypt(Location bdLoc)
     return LocationMake(bdLoc.lat - 0.006,bdLoc.lng - 0.0065);
 }
 
++(CLLocationCoordinate2D)transformFromWGSToGCJ:(CLLocationCoordinate2D)wgsLoc {
+    if (outOfChina(wgsLoc.latitude, wgsLoc.longitude)) {
+        return wgsLoc;
+    }
+    
+    Location location;
+    location.lat = wgsLoc.latitude;
+    location.lng = wgsLoc.longitude;
+    location = transformFromWGSToGCJ(location);
+    
+    wgsLoc.longitude = location.lng;
+    wgsLoc.latitude = location.lat;
+    
+    return wgsLoc;
+}
+
 @end
